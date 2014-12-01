@@ -40,7 +40,10 @@ The following code will check for a single event:
     import salt.utils.event
 
     event = salt.utils.event.MasterEvent('/var/run/salt/master')
+    # initialize the event listener (see #18611)
+    event.get_event(wait=0.1)
 
+    # stuff happens…
     data = event.get_event()
 
 Events will also use a "tag". Tags allow for events to be filtered by prefix.
@@ -58,6 +61,8 @@ instead of the default 5.
     import salt.utils.event
 
     event = salt.utils.event.MasterEvent('/var/run/salt/master')
+    # initialize the event listener (see #18611)
+    event.get_event(wait=0.1)
 
     data = event.get_event(wait=10, tag='salt/auth')
 
@@ -68,6 +73,8 @@ To retrieve the tag as well as the event data, pass ``full=True``:
     import salt.utils.event
 
     event = salt.utils.event.MasterEvent('/var/run/salt/master')
+    # initialize the event listener (see #18611)
+    event.get_event(wait=0.1)
 
     evdata = event.get_event(wait=10, tag='salt/job', full=True)
 
@@ -86,6 +93,8 @@ The iter_events method also accepts a tag but not a wait time:
     import salt.utils.event
 
     event = salt.utils.event.MasterEvent('/var/run/salt/master')
+    # initialize the event listener (see #18611)
+    event.get_event(wait=0.1)
 
     for data in event.iter_events(tag='salt/auth'):
         print(data)
